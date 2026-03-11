@@ -1,36 +1,272 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Quran Semantic Search
 
-## Getting Started
+An AI-powered semantic search engine for the Qur'an that allows users to search ayahs by **meaning** instead of exact keywords.
 
-First, run the development server:
+Traditional search systems rely on **keyword matching**, which fails when users search by concepts or ideas.
+This project demonstrates how **AI embeddings and vector similarity** can retrieve relevant ayahs even when the exact keyword is not present in the text.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+# Live Demo
+
+https://your-vercel-url.vercel.app
+
+Example search queries:
+
+* mercy
+* forgiveness
+* patience
+* charity
+* creation
+
+The system returns ayahs that are **semantically related** to the concept.
+
+---
+
+# Project Overview
+
+Most Qur'an search engines rely on keyword matching.
+
+Example:
+
+Searching for:
+
+```
+forgiveness
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+may fail if the ayah contains related Arabic words such as:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* غفر
+* عفو
+* رحمة
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project solves that limitation using **semantic search**.
 
-## Learn More
+Instead of matching words directly, the system converts text into **vector embeddings** and retrieves ayahs based on **meaning similarity**.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# System Architecture
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+User Query
+↓
+Next.js Frontend
+↓
+API Route (`/api/embed`)
+↓
+Python Embedding Script
+↓
+SentenceTransformer Model
+↓
+Query Vector (384 dimensions)
+↓
+Cosine Similarity Search
+↓
+Top Matching Ayahs
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Frontend
+
+* Next.js
+* React
+* TypeScript
+
+## Backend
+
+* Next.js API Routes
+* Node.js
+
+## AI / NLP
+
+* Python
+* SentenceTransformers
+* all-MiniLM-L6-v2
+
+## Algorithms
+
+* Sentence Embeddings
+* Vector Similarity
+* Cosine Similarity Ranking
+
+---
+
+# Key Features
+
+## Semantic Search
+
+Users can search ayahs by **meaning**, not exact keywords.
+
+Example:
+
+Query
+
+```
+patience
+```
+
+Results may include ayahs related to the concept of **sabr (صبر)** even if the word "patience" is not present.
+
+---
+
+## Multilingual Context
+
+The system uses both:
+
+* Arabic text
+* Thai translation
+
+This helps the embedding model capture deeper semantic meaning.
+
+---
+
+## Vector Similarity Ranking
+
+Each ayah is converted into a **vector embedding**.
+
+When a user submits a query:
+
+1. The query is converted into a vector
+2. Cosine similarity is computed between the query vector and ayah vectors
+3. The most semantically similar ayahs are returned
+
+---
+
+# Example
+
+Query:
+
+```
+forgiveness
+```
+
+Possible results:
+
+* Surah 2:52
+* Surah 36:27
+* Surah 38:25
+* Surah 42:43
+
+These ayahs contain related concepts such as:
+
+* forgiveness
+* mercy
+* repentance
+
+---
+
+# Challenges Solved
+
+## Python + Node Integration
+
+Problem:
+
+```
+Unexpected end of JSON input
+```
+
+Cause:
+
+Python stdout streaming returned incomplete JSON.
+
+Solution:
+
+Buffer the entire stdout output before parsing JSON in Node.js.
+
+---
+
+## Semantic Noise
+
+Some queries such as:
+
+```
+patience
+```
+
+may produce multiple semantic contexts.
+
+To improve relevance, queries can include additional context:
+
+```
+patience sabr
+```
+
+---
+
+# Performance
+
+Embedding model used:
+
+```
+all-MiniLM-L6-v2
+```
+
+Characteristics:
+
+* 384-dimensional embeddings
+* lightweight model
+* fast inference
+* suitable for real-time search
+
+Manual testing results:
+
+```
+~80–90% semantic relevance
+```
+
+---
+
+# Future Improvements
+
+Potential improvements include:
+
+Vector database integration
+
+* Pinecone
+* Weaviate
+* pgvector
+
+Improved embedding models
+
+* bge-large-en
+* multilingual embeddings
+
+AI question answering layer
+
+```
+User question
+↓
+Semantic search
+↓
+AI-generated summary
+```
+
+This could evolve the project into an **AI Quran Assistant**.
+
+---
+
+# Portfolio Value
+
+This project demonstrates practical skills in:
+
+* AI / NLP
+* Semantic Search
+* Vector Similarity Algorithms
+* Fullstack Development
+* Python + Node.js Integration
+
+Relevant roles:
+
+* AI Engineer
+* NLP Engineer
+* Backend Developer
+* Fullstack Developer
+
+---
+
+# Author
+
+Portfolio project exploring the application of **AI semantic search** to Qur'anic text.
