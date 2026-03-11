@@ -31,9 +31,9 @@ Example:
 
 Searching for:
 
-```
-forgiveness
-```
+
+"forgiveness"
+
 
 may fail if the ayah contains related Arabic words such as:
 
@@ -92,8 +92,6 @@ Top Matching Ayahs
 * Vector Similarity
 * Cosine Similarity Ranking
 
----
-
 # Key Features
 
 ## Semantic Search
@@ -104,13 +102,9 @@ Example:
 
 Query
 
-```
-patience
-```
+"patience"
 
 Results may include ayahs related to the concept of **sabr (صبر)** even if the word "patience" is not present.
-
----
 
 ## Multilingual Context
 
@@ -120,8 +114,6 @@ The system uses both:
 * Thai translation
 
 This helps the embedding model capture deeper semantic meaning.
-
----
 
 ## Vector Similarity Ranking
 
@@ -133,15 +125,12 @@ When a user submits a query:
 2. Cosine similarity is computed between the query vector and ayah vectors
 3. The most semantically similar ayahs are returned
 
----
 
 # Example
 
 Query:
 
-```
-forgiveness
-```
+"forgiveness"
 
 Possible results:
 
@@ -156,17 +145,13 @@ These ayahs contain related concepts such as:
 * mercy
 * repentance
 
----
-
 # Challenges Solved
 
 ## Python + Node Integration
 
 Problem:
 
-```
 Unexpected end of JSON input
-```
 
 Cause:
 
@@ -176,33 +161,24 @@ Solution:
 
 Buffer the entire stdout output before parsing JSON in Node.js.
 
----
-
 ## Semantic Noise
 
 Some queries such as:
 
-```
-patience
-```
+"patience"
 
 may produce multiple semantic contexts.
 
 To improve relevance, queries can include additional context:
 
-```
-patience sabr
-```
+"patience sabr"
 
----
 
 # Performance
 
 Embedding model used:
 
-```
 all-MiniLM-L6-v2
-```
 
 Characteristics:
 
@@ -213,11 +189,7 @@ Characteristics:
 
 Manual testing results:
 
-```
 ~80–90% semantic relevance
-```
-
----
 
 # Future Improvements
 
@@ -236,17 +208,14 @@ Improved embedding models
 
 AI question answering layer
 
-```
 User question
 ↓
 Semantic search
 ↓
 AI-generated summary
-```
 
 This could evolve the project into an **AI Quran Assistant**.
 
----
 
 # Portfolio Value
 
@@ -264,8 +233,6 @@ Relevant roles:
 * NLP Engineer
 * Backend Developer
 * Fullstack Developer
-
----
 
 # Author
 
