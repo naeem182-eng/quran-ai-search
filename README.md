@@ -9,7 +9,7 @@ This project demonstrates how **AI embeddings and vector similarity** can retrie
 
 # Live Demo
 
-https://your-vercel-url.vercel.app
+https://quran-ai-search.vercel.app
 
 Example search queries:
 
